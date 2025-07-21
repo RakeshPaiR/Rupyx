@@ -1,14 +1,20 @@
-import { FC } from 'react'
+import React, { useEffect, useState } from "react";
 
-const Home: FC = () => {
-  return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-4xl font-bold mb-6">Welcome to Rupyx</h1>
-      <p className="text-lg mb-4">
-        Your full-stack application with React, Express, and TypeScript
-      </p>
-    </div>
-  )
-}
+type Props = {
+  initialData: { message: string };
+};
 
-export default Home
+const Home: React.FC<Props> = ({ initialData }) => {
+  const [message, setMessage] = useState(initialData.message);
+
+  useEffect(() => {
+    // Simulate client-side update after hydration
+    setTimeout(() => {
+      setMessage("Hello from Client");
+    }, 5000);
+  }, []);
+
+  return <h1>{message}</h1>;
+};
+
+export default Home;
