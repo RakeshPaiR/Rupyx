@@ -13,7 +13,7 @@ const Home: React.FC<Props> = ({ initialData }) => {
     setMessage("Hello from Client");
   }, []);
 
-  return <h1 className="text-3xl text-blue-600 font-bold">{message}</h1>;
+  return <h1 className="text-3xl font-bold heading underline">{message}</h1>;
 };
 
 export default Home;

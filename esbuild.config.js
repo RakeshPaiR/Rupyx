@@ -11,7 +11,7 @@ esbuild
     format: "esm",
     sourcemap: true,
     logLevel: "info",
-    plugins: [sassPlugin({ type: "style" })],
+    plugins: [sassPlugin({ type: "css" })],
   })
   .then((result) => {
     if (isWatch && result.watch) {
