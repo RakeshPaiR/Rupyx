@@ -3,9 +3,11 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "ts-node-dev --respawn src/server/index.tsx",
-    "build": "esbuild src/client/index.tsx --bundle --outfile=dist/client.js --format=esm"
+    "build": "npm run tw:build && node esbuild.config.js",
+    "dev": "concurrently \"npm run tw:watch\" \"node esbuild.config.js --watch\" \"ts-node-dev src/server/index.tsx\"",
+    "start:dev": "concurrently \"npm run dev\" \"npm run build:watch\"",
+    "tw:build": "tailwindcss -i ./src/client/styles/tailwind.css -o ./dist/tailwind.css --minify",
+    "tw:watch": "tailwindcss -i ./src/client/styles/tailwind.css -o ./dist/tailwind.css --watch"
   },
   "repository": {
     "type": "git",
@@ -20,17 +22,26 @@
   "homepage": "https://github.com/RakeshPaiR/Rupyx#readme",
   "description": "",
   "dependencies": {
+    "@tailwindcss/postcss": "^4.1.11",
+    "autoprefixer": "^10.4.21",
     "dotenv": "^17.2.0",
+    "esbuild-postcss": "^0.0.4",
     "express": "^5.1.0",
+    "postcss": "^8.5.6",
     "react": "^19.1.0",
-    "react-dom": "^19.1.0"
+    "react-dom": "^19.1.0",
+    "tailwindcss": "^4.1.11"
   },
   "devDependencies": {
+    "@tailwindcss/cli": "^4.1.11",
     "@types/express": "^5.0.3",
     "@types/node": "^24.0.15",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
+    "concurrently": "^9.2.0",
     "esbuild": "^0.25.8",
+    "esbuild-sass-plugin": "^3.3.1",
+    "sass": "^1.89.2",
     "ts-node": "^10.9.2",
     "ts-node-dev": "^1.1.8",
     "typescript": "^5.8.3"

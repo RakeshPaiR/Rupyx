@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+// import "./Home.scss";
 
 type Props = {
   initialData: { message: string };
@@ -9,12 +10,10 @@ const Home: React.FC<Props> = ({ initialData }) => {
 
   useEffect(() => {
     // Simulate client-side update after hydration
-    setTimeout(() => {
-      setMessage("Hello from Client");
-    }, 5000);
+    setMessage("Hello from Client");
   }, []);
 
-  return <h1>{message}</h1>;
+  return <h1 className="text-3xl text-blue-600 font-bold">{message}</h1>;
 };
 
 export default Home;

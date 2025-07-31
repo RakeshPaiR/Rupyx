@@ -1,14 +1,20 @@
-export function buildHtml(reactHtml: string, data: any) {
+export function buildHtml(html: string, initialData: any) {
   return `
     <!DOCTYPE html>
-    <html>
+    <html lang="en">
       <head>
-        <title>Hydration Test</title>
-        <script>window.__INITIAL_DATA__ = ${JSON.stringify(data)}</script>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Rupyx</title>
+        <link rel="stylesheet" href="/index.css" />
+        <link rel="stylesheet" href="/styles/tailwind.css" />
       </head>
       <body>
-        <div id="root">${reactHtml}</div>
-        <script type="module" src="/client.js" defer></script>
+        <div id="root">${html}</div>
+        <script>
+          window.__INITIAL_DATA__ = ${JSON.stringify(initialData)};
+        </script>
+        <script src="/index.js" type="module"></script>
       </body>
     </html>
   `;
